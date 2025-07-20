@@ -23,7 +23,9 @@ class ComplaintCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(complaint.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(complaint.title,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Text(complaint.description),
             Text("Status: ${complaint.status}"),
             const SizedBox(height: 6),

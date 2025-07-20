@@ -1,13 +1,14 @@
+// complaint_location_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-class MapScreen extends StatelessWidget {
+class ComplaintLocationScreen extends StatelessWidget {
   final double latitude;
   final double longitude;
   final String title;
 
-  const MapScreen({
+  const ComplaintLocationScreen({
     super.key,
     required this.latitude,
     required this.longitude,
@@ -19,35 +20,25 @@ class MapScreen extends StatelessWidget {
     final LatLng position = LatLng(latitude, longitude);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor: Colors.blueAccent,
-      ),
+      appBar: AppBar(title: Text(title)),
       body: FlutterMap(
-        options: MapOptions(
-          center: position,
-          zoom: 16,
-        ),
+        options: MapOptions(center: position, zoom: 15.0),
         children: [
           TileLayer(
-            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: const ['a', 'b', 'c'],
-            userAgentPackageName: 'com.example.yourapp',
+            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            subdomains: ['a', 'b', 'c'],
           ),
           MarkerLayer(
             markers: [
               Marker(
-                width: 50,
-                height: 50,
                 point: position,
-                child: const Icon(
-                  Icons.location_on,
-                  size: 40,
-                  color: Colors.red,
-                ),
+                width: 40,
+                height: 40,
+                child:
+                    const Icon(Icons.location_pin, size: 40, color: Colors.red),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
